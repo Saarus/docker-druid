@@ -1,0 +1,24 @@
+FROM ubuntu:14.04
+
+# Java 8
+RUN apt-get update -y \
+      && apt-get install -y software-properties-common
+
+COPY ./jdk/ /tmp
+
+RUN mv /tmp/jdk1.8.0_231 /opt/jdk \
+&& update-alternatives --install /usr/bin/java java /opt/jdk/bin/java 100 \
+&& update-alternatives --install /usr/bin/javac javac /opt/jdk/bin/javac 100 \
+&& apt-get update -y
+
+# Supervisor
+RUN apt-get install -y supervisor
+
+# wget
+RUN apt-get install -y wget
+
+# git
+RUN apt-get install -y git
+
+# screen
+RUN apt-get install -y screen
